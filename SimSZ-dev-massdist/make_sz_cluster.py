@@ -17,13 +17,14 @@ class GenerateCluster():
 
     def P200_Battaglia2012(self,cosmo,z,M200,R200):
 
-        P200 = (G*M200 * 200. * cosmo.critical_density(z) * (cosmo.Ob0/cosmo.Om0)) / (2. * R200) #From Battaglia 2012
+        P200 = (G*M200*u.Msun * 200. * cosmo.critical_density(z) * (cosmo.Ob0/cosmo.Om0)) / (2. * R200*u.Mpc) #From Battaglia 2012
+        P200=P200.to(u.keV/u.cm**3.) #Unit conversion to keV/cm^3
 
         return(P200)
 
     def param_Battaglia2012(self,A0,alpha_m,alpha_z,M200,z):
 
-        A = A0 * ((M200/1e14)**alpha_m) * (1.+z)**alpha_z
+        A = A0 * (M200/1e14)**alpha_m * (1.+z)**alpha_z
 
         return(A)
 
